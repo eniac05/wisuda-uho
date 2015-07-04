@@ -118,68 +118,6 @@ else {
 }
 }
 ?>
-<?php /*
-//upload foto
-$tarPOST_dir = "uploads/";
-$tarPOST_file = $tarPOST_dir . $nim."_".basename($_FILES["upload_foto"]["name"]);
-$nama_file_foto=$nim."_".basename($_FILES["upload_foto"]["name"]);
-$uploadOk = 1;
-$imageFileType = pathinfo($tarPOST_file,PATHINFO_EXTENSION);
-// Check if image file is a actual image or fake image
-if(isset($_POST["submit"])) {
-    $check = POSTimagesize($_FILES["upload_foto"]["tmp_name"]);
-    if($check !== false) {
-        echo "File is an image - " . $check["mime"] . ".";
-        $uploadOk = 1;
-    } else {
-        echo "File is not an image.";
-        $uploadOk = 0;
-    }
-}
-// Check if file already exists
-if (file_exists($tarPOST_file)) {
-    echo "Sorry, file already exists.";
-    $uploadOk = 0;
-}
-// Check file size
-if ($_FILES["upload_foto"]["size"] > 500000) {
-    echo "Sorry, your file is too large.";
-    $uploadOk = 0;
-}
-// Allow certain file formats
-if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-&& $imageFileType != "gif" ) {
-    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-    $uploadOk = 0;
-}
-// Check if $uploadOk is set to 0 by an error
-if ($uploadOk == 0) {
-    echo "Sorry, your file was not uploaded.";
-// if everything is ok, try to upload file
-} else {
-    if (move_uploaded_file($_FILES["upload_foto"]["tmp_name"], $tarPOST_file)) {
-        echo "The file ". basename( $_FILES["upload_foto"]["name"]). " has been uploaded.";
-		
-		//masukan nama file foto ke database
-		$query_insert_foto = "insert into wisudawan (foto)  values('$nama_file_foto') where nim=$nim;";
-		$insert = mysql_query($query_insert_foto);
-		if( $insert )
-		{ ?>
-			<script language="JavaScript">
-    		alert ('data foto ke data base');
-        	document.location='index.php';
-       	</script>
-		<?php
-		}
-		else {
-  		die('Gagal Tambahfoto: ' . mysql_error());
-		}
-    } else {
-        echo "Sorry, there was an error uploading your file.";
-    }
-}
-*/
 
-?>
 </body>
 </html>
