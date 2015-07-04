@@ -5,6 +5,7 @@
 <title>Untitled Document</title>
 
 <script type="text/javascript" src="jquery.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript">
 var htmlobjek;
 $(document).ready(function(){
@@ -77,7 +78,22 @@ $("#add_asal_pt_s2").hide();
             });
 $("#add_asal_pt_s1").hide();
 $("#add_asal_pt_s2").hide();
+function readURL(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      $('#previewHolder').attr('src', e.target.result);
+    }
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+$("#upload_foto").change(function() {
+  readURL(this);
 });
+});
+
  
 </script>
 </head>
@@ -91,7 +107,7 @@ $("#add_asal_pt_s2").hide();
 		$jenjang="s1";
 		$ipk=3.0;
 		?>
-<form action="insert_data_wisuda.php" method="get">
+<form action="insert_data_wisuda.php" method="POST" enctype="multipart/form-data">
   <table width="751" border="0">
  <tr>
     <td>Tahun Wisuda</td>
@@ -183,6 +199,12 @@ $("#add_asal_pt_s2").hide();
     <td><select name="nama_prodi" id ="nama_prodi"> <option>--Pilih Prodi--</option>
       
       </select></td>
+  </tr>
+  <tr>
+    <td>IPK</td>
+    <td>:</td>
+    <td><label for="ipk"></label>
+      <input type="text" name="ipk" id="ipk" /></td>
   </tr>
   <tr>
     <td>Jenjang</td>
@@ -355,22 +377,12 @@ $("#add_asal_pt_s2").hide();
   <tr>
     <td>Foto</td>
     <td>:</td>
-    <td><form action="upload_foto.php" method="get"><table width="317" border="1">
-  <tr>
-    <td width="95">&nbsp;</td>
-    <td width="206"><input type="submit" name="upload_foto" id="upload_foto" value="Upload Foto" />
-      Maksimal 200 kB</td>
-  </tr>
-</table>
+    <td>  <img id="previewHolder" alt="Foto Preview" width="100px" height="100px"/> <p><input name="upload_foto" type="file" id="upload_foto" /> </p>
 </td>
   </tr>
    <tr>
     <td>
-	<input name="ipk" type="hidden" value="" /><?php  
-
-  echo "<input name=\"ipk\" type=\"hidden\"  value=\"$ipk\""; 
-   
-  ?> </td>
+	 </td>
     <td></td>
     <td><input name="upload_data" type="submit" value="Upload Data" /></td>
   </tr>
